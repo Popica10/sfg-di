@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: EN,cat,dev
+popika:
+  username: "YmlTruewolf10"
+  password: "YmlTruewolf10Pass"
+
+---
+spring:
+  profiles: prod
+popika:
+  username: ProdTruewolf10
+  password: ProdTruewfol10Pass

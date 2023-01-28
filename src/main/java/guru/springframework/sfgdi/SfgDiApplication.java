@@ -1,6 +1,9 @@
 package guru.springframework.sfgdi;
 
+import guru.springframework.sfgdi.config.BindingConfig;
+import guru.springframework.sfgdi.config.BindingConstructorConfig;
 import guru.springframework.sfgdi.controllers.*;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -36,6 +39,21 @@ public class SfgDiApplication {
 		System.out.println("-------- Constructor" );
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
+
+		System.out.println("--------------- Using property source FakeDataSource");
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println("Username for fake datasource: " + fakeDataSource.getUsername());
+		System.out.println("Password for fake datasource: " + fakeDataSource.getPassword());
+
+		System.out.println("--------------- Using binding properties ");
+		BindingConfig bindingConfig = ctx.getBean(BindingConfig.class);
+		System.out.println("Username for fake datasource: " + bindingConfig.getUsername());
+		System.out.println("Password for fake datasource: " + bindingConfig.getPassword());
+
+		System.out.println("--------------- Using constructor binding properties ");
+		BindingConstructorConfig bindingConstructorConfig = ctx.getBean(BindingConstructorConfig.class);
+		System.out.println("Username for fake datasource: " + bindingConstructorConfig.getUsername());
+		System.out.println("Password for fake datasource: " + bindingConstructorConfig.getPassword());
 	}
 
 }
